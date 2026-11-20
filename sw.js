@@ -1,6 +1,6 @@
 // Service worker: permite instalar la app y abrirla aunque no haya internet.
 // Cuando cambies algo de la página, subí el número de versión para renovar la caché.
-const CACHE = "vikgrafic-v3";
+const CACHE = "vikgrafic-v4";
 
 const ARCHIVOS = [
   "./",
