@@ -1,11 +1,12 @@
 // Service worker: permite instalar la app y abrirla aunque no haya internet.
 // Cuando cambies algo de la página, subí el número de versión para renovar la caché.
-const CACHE = "vikgrafic-v1";
+const CACHE = "vikgrafic-v2";
 
 const ARCHIVOS = [
   "./",
   "./index.html",
   "./nestor.html",
+  "./juegos.js",
   "./manifest.webmanifest",
   "./img/publicidad-vikgrafic.webp",
   "./img/icons/icon-192.png",
