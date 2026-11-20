@@ -1,0 +1,830 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VikGrafic | Soluciones de Impresión en Capiatá</title>
+  <meta name="description" content="VikGrafic, imprenta en Capiatá: talonarios de factura, recibos de dinero, notas de crédito y remisión, órdenes de trabajo, tarjetas personales, recetarios médicos, volantes y etiquetas. Calidad, rapidez y atención personalizada.">
+  <meta name="theme-color" content="#0c1a3d">
+
+  <!-- PWA: se puede instalar en el celular como una app -->
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/icons/favicon-32.png">
+  <link rel="apple-touch-icon" href="img/icons/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="VikGrafic">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Open Graph (vista previa al compartir en WhatsApp / Facebook) -->
+  <meta property="og:title" content="VikGrafic | Soluciones de Impresión">
+  <meta property="og:description" content="Todo lo que tu negocio necesita, ¡lo imprimimos! Talonarios, tarjetas, volantes, etiquetas y más.">
+  <meta property="og:image" content="img/publicidad-vikgrafic.webp">
+  <meta property="og:type" content="website">
+
+  <!-- Bootstrap 5.3.9 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.9/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-yEPZ7jP9S0QKiUQ0m3jjsO4ProIW7wvR9gXkI7JOGa2XVsw53Yke2bsdkBbjmmiX" crossorigin="anonymous">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.2/font/bootstrap-icons.min.css" rel="stylesheet">
+  <!-- Tipografías -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Poppins:wght@400;500;600;700&family=Playfair+Display:ital,wght@1,600;1,700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --vg-ink: #070f22;
+      --vg-navy: #0c1a3d;
+      --vg-navy-2: #14285a;
+      --vg-gold: #d9a93f;
+      --vg-gold-light: #f6d887;
+      --vg-gold-dark: #a87a22;
+      --vg-paper: #faf8f3;
+      --vg-text: #1b2238;
+      --c: #00a8e8; --m: #e6007e; --y: #ffd60a; --k: #111;
+      --gold-grad: linear-gradient(135deg, #a87a22 0%, #f6d887 42%, #d9a93f 62%, #a87a22 100%);
+      --bs-body-font-family: "Poppins", system-ui, sans-serif;
+    }
+    body { background: var(--vg-paper); color: var(--vg-text); overflow-x: hidden; }
+    h1, h2, h3, .font-display { font-family: "Oswald", "Poppins", sans-serif; text-transform: uppercase; letter-spacing: .5px; }
+    .serif { font-family: "Playfair Display", Georgia, serif; font-style: italic; text-transform: none; letter-spacing: 0; }
+    .text-gold { color: var(--vg-gold) !important; }
+    .text-gold-grad {
+      background: var(--gold-grad); -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .bg-ink { background: var(--vg-ink) !important; }
+
+    /* Franja CMYK (detalle de imprenta) */
+    .cmyk-bar { height: 6px; background: linear-gradient(90deg, var(--c) 0 25%, var(--m) 25% 50%, var(--y) 50% 75%, var(--k) 75%); }
+    .cmyk-dots { display: inline-flex; gap: 5px; vertical-align: middle; }
+    .cmyk-dots i { width: 10px; height: 10px; border-radius: 50%; display: block; }
+    .cmyk-dots i:nth-child(1) { background: var(--c); }
+    .cmyk-dots i:nth-child(2) { background: var(--m); }
+    .cmyk-dots i:nth-child(3) { background: var(--y); }
+    .cmyk-dots i:nth-child(4) { background: #fff; }
+
+    /* Botones */
+    .btn-gold {
+      --bs-btn-color: var(--vg-ink); --bs-btn-hover-color: var(--vg-ink); --bs-btn-active-color: var(--vg-ink);
+      --bs-btn-border-color: transparent; --bs-btn-hover-border-color: transparent;
+      background: var(--gold-grad); background-size: 200% 100%; background-position: 0 0;
+      font-weight: 700; transition: background-position .4s, transform .2s;
+    }
+    .btn-gold:hover { background: var(--gold-grad); background-size: 200% 100%; background-position: 100% 0; transform: translateY(-2px); }
+    .btn-whatsapp {
+      --bs-btn-bg: #25d366; --bs-btn-border-color: #25d366; --bs-btn-color: #fff;
+      --bs-btn-hover-bg: #1ebe5a; --bs-btn-hover-border-color: #1ebe5a; --bs-btn-hover-color: #fff;
+      --bs-btn-active-bg: #17a74e; font-weight: 700;
+    }
+    .btn-outline-gold {
+      --bs-btn-color: var(--vg-gold-light); --bs-btn-border-color: var(--vg-gold);
+      --bs-btn-hover-bg: var(--vg-gold); --bs-btn-hover-border-color: var(--vg-gold); --bs-btn-hover-color: var(--vg-ink);
+      --bs-btn-active-bg: var(--vg-gold-dark); font-weight: 600;
+    }
+
+    /* Navbar */
+    .navbar { transition: background .3s, box-shadow .3s, padding .3s; }
+    .navbar.scrolled {
+      background: rgba(7,15,34,.94) !important; backdrop-filter: blur(8px);
+      box-shadow: 0 2px 0 var(--vg-gold-dark), 0 10px 30px rgba(0,0,0,.35);
+    }
+    .navbar .nav-link { font-weight: 500; color: rgba(255,255,255,.8); }
+    .navbar .nav-link:hover { color: var(--vg-gold-light); }
+    @media (max-width: 991.98px) {
+      .navbar-collapse { background: var(--vg-ink); border: 1px solid rgba(217,169,63,.35); border-radius: .75rem; padding: 0 1rem; margin-top: .75rem; }
+      .navbar-collapse.show { padding: 1rem; }
+    }
+    .brand-logo { width: 44px; height: 44px; flex: 0 0 44px; }
+    .brand-name { font-family: "Oswald", sans-serif; font-weight: 700; font-size: 1.45rem; letter-spacing: 1px; line-height: 1; color: #fff; }
+    .brand-name b { font-weight: 700; }
+    .brand-sub { font-size: .58rem; letter-spacing: 3px; color: var(--vg-gold-light); text-transform: uppercase; }
+
+    /* Hero */
+    .hero {
+      position: relative; color: #fff; overflow: hidden; padding: 7.5rem 0 4.5rem;
+      background:
+        radial-gradient(circle at 85% 15%, rgba(217,169,63,.22), transparent 40%),
+        radial-gradient(circle at 10% 90%, rgba(0,168,232,.12), transparent 35%),
+        radial-gradient(rgba(255,255,255,.07) 1.2px, transparent 1.6px) 0 0 / 18px 18px,
+        linear-gradient(160deg, var(--vg-ink) 0%, var(--vg-navy) 55%, var(--vg-navy-2) 100%);
+    }
+    @media (min-width: 992px) { .hero { min-height: 100vh; display: flex; align-items: center; } }
+    .hero::before { /* línea dorada diagonal */
+      content: ""; position: absolute; width: 140%; height: 2px; left: -20%; top: 62%;
+      background: linear-gradient(90deg, transparent, var(--vg-gold), transparent); transform: rotate(-8deg); opacity: .5;
+    }
+    .hero-kicker {
+      display: inline-flex; align-items: center; gap: .6rem; padding: .4rem .9rem; border-radius: 999px;
+      border: 1px solid rgba(217,169,63,.5); background: rgba(255,255,255,.04);
+      font-size: .8rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--vg-gold-light);
+    }
+    .hero h1 { font-weight: 700; font-size: clamp(2.3rem, 6vw, 4.4rem); line-height: 1.02; }
+    .hero h1 .big { display: block; font-size: 1.25em; }
+    .hero .lead { color: rgba(255,255,255,.72); }
+    .promise { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .promise span {
+      font-size: .82rem; font-weight: 600; padding: .35rem .8rem; border-radius: .4rem;
+      background: rgba(217,169,63,.12); color: var(--vg-gold-light); border-left: 3px solid var(--vg-gold);
+    }
+
+    /* Talonarios dibujados en CSS */
+    .doc {
+      container-type: inline-size; background: #fff; color: #333; border-radius: 4px;
+      box-shadow: 0 18px 40px rgba(0,0,0,.35); padding: 10% 7% 7%; position: relative; --tone: var(--vg-navy);
+    }
+    .doc::before { /* espiral / perforado de arriba */
+      content: ""; position: absolute; left: 0; right: 0; top: 0; height: 7%;
+      background: radial-gradient(circle, #c9ccd4 38%, transparent 42%) 0 50% / 7% 100% repeat-x, #eceef2;
+      border-radius: 4px 4px 0 0;
+    }
+    .doc-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6%; }
+    .doc-tag { background: var(--tone); color: #fff; font: 700 6.2cqw/1 "Oswald", sans-serif; padding: 2.5% 4%; border-radius: 2px; text-transform: uppercase; letter-spacing: .3px; }
+    .doc-num { color: #d62839; font: 700 6cqw/1 "Oswald", sans-serif; }
+    .doc-lines { height: 18cqw; background: repeating-linear-gradient(transparent 0 5.5cqw, #d5d8df 5.5cqw calc(5.5cqw + 1px)); margin-bottom: 5%; }
+    .doc-table { border: 1px solid #c7cbd4; }
+    .doc-table::before { content: ""; display: block; height: 6cqw; background: var(--tone); }
+    .doc-table div { height: 26cqw; background:
+      repeating-linear-gradient(90deg, transparent 0 24%, #dfe2e8 24% calc(24% + 1px)),
+      repeating-linear-gradient(transparent 0 6.5cqw, #eceef2 6.5cqw calc(6.5cqw + 1px)); }
+    .doc-total { text-align: right; font: 600 4.6cqw/1 "Poppins", sans-serif; color: #888; margin-top: 4%; }
+    .tone-navy { --tone: #1f3a7a; } .tone-green { --tone: #1e8a4c; } .tone-red { --tone: #d62839; }
+    .tone-blue { --tone: #1d5fc4; } .tone-orange { --tone: #e07b00; } .tone-gold { --tone: #b8862f; }
+
+    .pads-stack { position: relative; width: 100%; max-width: 540px; aspect-ratio: 1 / 1.05; margin-inline: auto; }
+    .pads-stack .doc { position: absolute; width: 50%; transform: rotate(var(--r)); animation: flotar 6s ease-in-out infinite; }
+    .pads-stack .d1 { left: 2%;  top: 4%;  --r: -7deg; }
+    .pads-stack .d2 { right: 0;  top: 0;   --r: 6deg;  animation-delay: -1.5s; }
+    .pads-stack .d3 { left: 6%;  bottom: 0; --r: 4deg;  animation-delay: -3s; }
+    .pads-stack .d4 { right: 4%; bottom: 5%; --r: -4deg; animation-delay: -4.5s; }
+    @keyframes flotar { 0%,100% { transform: rotate(var(--r)) translateY(0); } 50% { transform: rotate(var(--r)) translateY(-10px); } }
+    .seal {
+      position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%) rotate(-12deg); z-index: 3;
+      width: 30%; aspect-ratio: 1; border-radius: 50%; display: grid; place-items: center; text-align: center;
+      background: var(--gold-grad); color: var(--vg-ink); box-shadow: 0 10px 30px rgba(0,0,0,.4), inset 0 0 0 5px rgba(7,15,34,.25);
+      font: 700 clamp(.7rem, 2.4vw, 1.05rem)/1.05 "Oswald", sans-serif; text-transform: uppercase;
+    }
+
+    /* Cinta que se desplaza */
+    .ticker { background: var(--gold-grad); color: var(--vg-ink); overflow: hidden; white-space: nowrap; padding: .85rem 0; }
+    .ticker-track { display: inline-flex; animation: deslizar 28s linear infinite; }
+    .ticker-track span { font: 600 1.05rem "Oswald", sans-serif; text-transform: uppercase; letter-spacing: 1.5px; padding: 0 1.4rem; }
+    .ticker-track span::before { content: "◆"; font-size: .7em; margin-right: 1.4rem; opacity: .55; }
+    @keyframes deslizar { to { transform: translateX(-50%); } }
+
+    /* Títulos de sección */
+    .kicker { display: inline-flex; align-items: center; gap: .6rem; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; font-size: .8rem; color: var(--vg-gold-dark); }
+    .kicker::before { content: ""; width: 28px; height: 2px; background: currentColor; }
+    .section-title { font-weight: 700; color: var(--vg-navy); font-size: clamp(2rem, 5vw, 3rem); line-height: 1.05; }
+
+    /* Talonarios (tarjetas tipo ticket) */
+    .ticket {
+      background: #fff; border-radius: 1rem; height: 100%; display: flex; flex-direction: column;
+      box-shadow: 0 1px 0 rgba(12,26,61,.06), 0 12px 30px rgba(12,26,61,.08); transition: transform .25s, box-shadow .25s;
+      position: relative;
+    }
+    .ticket:hover { transform: translateY(-6px); box-shadow: 0 22px 44px rgba(12,26,61,.16); }
+    .ticket-art {
+      padding: 1.6rem 2.2rem 1.4rem; border-radius: 1rem 1rem 0 0;
+      background: radial-gradient(rgba(12,26,61,.07) 1px, transparent 1.4px) 0 0 / 12px 12px, #eef1f7;
+    }
+    .ticket-art .doc { max-width: 210px; margin-inline: auto; transform: rotate(-2deg); box-shadow: 0 10px 24px rgba(12,26,61,.18); }
+    .ticket:hover .ticket-art .doc { transform: rotate(0); transition: transform .3s; }
+    .ticket-body { padding: 1.5rem; border-top: 2px dashed #d7dbe5; position: relative; flex: 1; display: flex; flex-direction: column; }
+    .ticket-body::before, .ticket-body::after { /* muescas del ticket */
+      content: ""; position: absolute; top: -12px; width: 22px; height: 22px; border-radius: 50%; background: var(--vg-paper);
+    }
+    .ticket-body::before { left: -11px; } .ticket-body::after { right: -11px; }
+    .ticket h3 { font-size: 1.3rem; font-weight: 600; color: var(--vg-navy); margin-bottom: .4rem; }
+    .ticket p { color: #5b6378; font-size: .93rem; }
+    .link-cotizar { margin-top: auto; font-weight: 600; color: #128c4a; text-decoration: none; }
+    .link-cotizar:hover { color: #0b6b37; }
+    .link-cotizar i { transition: transform .2s; display: inline-block; }
+    .link-cotizar:hover i.bi-arrow-right { transform: translateX(4px); }
+
+    /* Otros productos: marcas de corte de imprenta */
+    .productos { background: var(--vg-ink); color: #fff; position: relative; }
+    .productos .section-title { color: #fff; }
+    .crop {
+      --mk: rgba(217,169,63,.85); padding: 12px; height: 100%;
+      background:
+        linear-gradient(var(--mk),var(--mk)) left 0 top 12px / 10px 1px,
+        linear-gradient(var(--mk),var(--mk)) left 12px top 0 / 1px 10px,
+        linear-gradient(var(--mk),var(--mk)) right 0 top 12px / 10px 1px,
+        linear-gradient(var(--mk),var(--mk)) right 12px top 0 / 1px 10px,
+        linear-gradient(var(--mk),var(--mk)) left 0 bottom 12px / 10px 1px,
+        linear-gradient(var(--mk),var(--mk)) left 12px bottom 0 / 1px 10px,
+        linear-gradient(var(--mk),var(--mk)) right 0 bottom 12px / 10px 1px,
+        linear-gradient(var(--mk),var(--mk)) right 12px bottom 0 / 1px 10px;
+      background-repeat: no-repeat;
+    }
+    .product {
+      height: 100%; padding: 1.75rem 1.5rem; background: linear-gradient(160deg, #102049, #0b1736);
+      border: 1px solid rgba(255,255,255,.08); display: flex; flex-direction: column; transition: border-color .25s, transform .25s;
+    }
+    .product:hover { border-color: rgba(217,169,63,.6); transform: translateY(-4px); }
+    .product-icon {
+      width: 64px; height: 64px; border-radius: 50%; display: grid; place-items: center; font-size: 1.8rem;
+      background: color-mix(in srgb, var(--accent) 18%, transparent); color: var(--accent);
+      box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--accent) 55%, transparent); margin-bottom: 1.2rem;
+    }
+    .product h3 { font-size: 1.35rem; font-weight: 600; }
+    .product p { color: rgba(255,255,255,.62); font-size: .92rem; }
+    .product .link-cotizar { color: var(--vg-gold-light); }
+    .product .link-cotizar:hover { color: #fff; }
+
+    /* Por qué elegirnos */
+    .feature-row { display: flex; gap: 1rem; align-items: flex-start; padding: 1.1rem 0; border-bottom: 1px solid #e6e2d6; }
+    .feature-row:last-child { border-bottom: 0; }
+    .feature-icon {
+      flex: 0 0 56px; height: 56px; border-radius: 14px; display: grid; place-items: center; font-size: 1.6rem;
+      background: var(--vg-navy); color: var(--vg-gold-light); box-shadow: 4px 4px 0 var(--vg-gold);
+    }
+    .feature-row h3 { font-size: 1.15rem; font-weight: 600; color: var(--vg-navy); margin-bottom: .2rem; }
+    .flyer-frame { position: relative; max-width: 440px; margin-inline: auto; }
+    .flyer-frame::before {
+      content: ""; position: absolute; inset: -14px 14px 14px -14px; border: 2px solid var(--vg-gold); border-radius: 1rem;
+    }
+    .flyer-img { position: relative; border-radius: .8rem; box-shadow: 0 30px 60px rgba(12,26,61,.3); }
+    .slogan-box { background: var(--vg-navy); color: #fff; border-radius: 1rem; position: relative; overflow: hidden; }
+    .slogan-box::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 5px;
+      background: linear-gradient(90deg, var(--c) 0 25%, var(--m) 25% 50%, var(--y) 50% 75%, var(--k) 75%); }
+
+    /* Cómo pedir */
+    .steps { counter-reset: paso; }
+    .step { text-align: center; position: relative; }
+    .step-dot {
+      width: 76px; height: 76px; border-radius: 50%; margin: 0 auto 1rem; display: grid; place-items: center;
+      background: #fff; color: var(--vg-navy); font-size: 1.9rem; position: relative; z-index: 1;
+      box-shadow: 0 0 0 6px var(--vg-paper), 0 0 0 8px var(--accent);
+    }
+    .step-dot::after {
+      counter-increment: paso; content: counter(paso); position: absolute; right: -6px; top: -6px;
+      width: 28px; height: 28px; border-radius: 50%; background: var(--accent); color: #fff;
+      font: 700 .9rem/28px "Oswald", sans-serif;
+    }
+    .step h3 { font-size: 1.15rem; font-weight: 600; color: var(--vg-navy); }
+    .step p { color: #5b6378; font-size: .9rem; }
+    @media (min-width: 992px) {
+      .steps .steps-line { position: absolute; left: 12.5%; right: 12.5%; top: 38px; width: auto; padding: 0; margin: 0; border-top: 2px dashed #c9c3b2; }
+    }
+
+    /* Contacto */
+    .contacto {
+      color: #fff; position: relative; overflow: hidden;
+      background:
+        radial-gradient(circle at 0% 0%, rgba(217,169,63,.18), transparent 40%),
+        radial-gradient(rgba(255,255,255,.05) 1.2px, transparent 1.6px) 0 0 / 18px 18px,
+        var(--vg-navy);
+    }
+    .contact-card {
+      background: rgba(255,255,255,.04); border-radius: 1.25rem; position: relative;
+      border: 1px solid transparent;
+      background-clip: padding-box;
+    }
+    .contact-card::before {
+      content: ""; position: absolute; inset: -1px; border-radius: inherit; padding: 1px; background: var(--gold-grad);
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude;
+      pointer-events: none;
+    }
+    .info-item { display: flex; gap: 1rem; align-items: center; padding: .9rem 0; border-bottom: 1px solid rgba(255,255,255,.08); }
+    .info-item:last-child { border-bottom: 0; }
+    .info-item > i { flex: 0 0 48px; height: 48px; border-radius: 12px; display: grid; place-items: center; font-size: 1.35rem; background: rgba(217,169,63,.14); color: var(--vg-gold-light); }
+    .info-item small { color: rgba(255,255,255,.55); text-transform: uppercase; letter-spacing: 1.5px; font-size: .7rem; display: block; }
+    .info-item a, .info-item span.v { color: #fff; text-decoration: none; font-weight: 600; font-size: 1.1rem; }
+    .info-item a:hover { color: var(--vg-gold-light); }
+    .phone-big { font: 700 clamp(1.9rem, 6vw, 2.8rem)/1 "Oswald", sans-serif; letter-spacing: 1px; text-decoration: none; }
+
+    /* Guardar como app (PWA) */
+    .install-box { border-radius: 1rem; background: var(--vg-ink); border: 1px dashed rgba(217,169,63,.6); }
+    .app-icon-preview { width: 60px; height: 60px; border-radius: 14px; box-shadow: 0 6px 18px rgba(0,0,0,.4); }
+    .btn-install i { animation: bajar 1.6s ease-in-out infinite; display: inline-block; }
+    @keyframes bajar { 0%,100% { transform: translateY(0); } 50% { transform: translateY(4px); } }
+    .btn-install { white-space: normal; }
+    .is-installed .install-only { display: none !important; }
+
+    /* Footer */
+    footer { background: var(--vg-ink); color: rgba(255,255,255,.55); }
+    .hecho-por {
+      display: inline-block; font-size: .72rem; color: rgba(255,255,255,.35);
+      text-decoration: none; letter-spacing: .5px; animation: llamar-atencion 10s ease-in-out infinite;
+    }
+    .hecho-por:hover { color: var(--vg-gold-light); animation-play-state: paused; }
+    @keyframes llamar-atencion {
+      0%, 88%, 100% { color: rgba(255,255,255,.35); transform: none; text-shadow: none; }
+      90% { color: var(--vg-gold-light); transform: scale(1.35) rotate(-4deg); text-shadow: 0 0 12px rgba(217,169,63,.9); }
+      92% { transform: scale(1.35) rotate(4deg); }
+      94% { transform: scale(1.35) rotate(-3deg); }
+      96% { color: var(--vg-gold-light); transform: scale(1.15) rotate(0); text-shadow: 0 0 8px rgba(217,169,63,.6); }
+    }
+
+    /* Botón flotante WhatsApp */
+    .wa-float {
+      position: fixed; right: 18px; bottom: 18px; z-index: 1050; width: 60px; height: 60px; border-radius: 18px;
+      background: #25d366; color: #fff; display: grid; place-items: center; font-size: 1.9rem; text-decoration: none;
+      box-shadow: 0 8px 24px rgba(0,0,0,.3); transform: rotate(-6deg); transition: transform .2s;
+    }
+    .wa-float:hover { color: #fff; transform: rotate(0) scale(1.06); }
+    .wa-float::after {
+      content: ""; position: absolute; inset: -4px; border-radius: 22px; border: 2px solid #25d366; animation: onda 2s infinite;
+    }
+    @keyframes onda { from { opacity: .8; transform: scale(1); } to { opacity: 0; transform: scale(1.35); } }
+
+    /* Animación al hacer scroll */
+    .reveal { opacity: 0; transform: translateY(26px) scale(.98); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .pads-stack .doc, .ticker-track, .wa-float::after, .hecho-por, .btn-install i { animation: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Logo en SVG (se reutiliza en el menú y el pie) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <linearGradient id="oro" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#a87a22"/><stop offset=".45" stop-color="#f6d887"/>
+        <stop offset=".6" stop-color="#d9a93f"/><stop offset="1" stop-color="#a07320"/>
+      </linearGradient>
+      <symbol id="logo-vg" viewBox="0 0 100 100">
+        <path d="M10 18 H90 L50 88 Z" fill="none" stroke="url(#oro)" stroke-width="7" stroke-linejoin="round"/>
+        <text x="50" y="52" text-anchor="middle" font-family="Oswald, Impact, sans-serif" font-weight="700" font-size="30" fill="url(#oro)">VG</text>
+      </symbol>
+    </defs>
+  </svg>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-transparent py-3" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="#inicio">
+        <svg class="brand-logo" aria-hidden="true"><use href="#logo-vg"/></svg>
+        <span class="d-flex flex-column">
+          <span class="brand-name">VIK<span class="text-gold-grad">GRAFIC</span></span>
+          <span class="brand-sub">Soluciones de impresión</span>
+        </span>
+      </a>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu"
+              aria-controls="navMenu" aria-expanded="false" aria-label="Abrir menú">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+          <li class="nav-item"><a class="nav-link" href="#talonarios">Talonarios</a></li>
+          <li class="nav-item"><a class="nav-link" href="#productos">Productos</a></li>
+          <li class="nav-item"><a class="nav-link" href="#como-pedir">Cómo pedir</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
+          <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
+            <a class="btn btn-gold rounded-pill px-4 wa-link" href="#" target="_blank" rel="noopener">
+              <i class="bi bi-whatsapp me-1"></i> Cotizá
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <header class="hero" id="inicio">
+    <div class="container position-relative" style="z-index:1">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-6">
+          <span class="hero-kicker mb-4"><span class="cmyk-dots"><i></i><i></i><i></i><i></i></span> Imprenta en Capiatá</span>
+          <h1 class="mb-4">
+            Todo lo que tu negocio necesita,
+            <span class="big text-gold-grad">¡lo imprimimos!</span>
+          </h1>
+          <p class="lead mb-4">
+            Talonarios de factura, recibos, notas de crédito y remisión, tarjetas personales,
+            volantes, recetarios y etiquetas para tus productos.
+          </p>
+          <div class="promise mb-4">
+            <span><i class="bi bi-award me-1"></i>Calidad</span>
+            <span><i class="bi bi-lightning-charge me-1"></i>Rapidez</span>
+            <span><i class="bi bi-person-heart me-1"></i>Atención personalizada</span>
+          </div>
+          <div class="d-flex flex-wrap gap-3">
+            <a class="btn btn-whatsapp btn-lg rounded-pill px-4 py-3 wa-link" href="#" target="_blank" rel="noopener">
+              <i class="bi bi-whatsapp me-2"></i>Pedí tu presupuesto
+            </a>
+            <a class="btn btn-outline-gold btn-lg rounded-pill px-4 py-3" href="#talonarios">
+              Ver productos <i class="bi bi-arrow-down-short"></i>
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="pads-stack" aria-hidden="true">
+            <div class="doc d1 tone-navy">
+              <div class="doc-head"><span class="doc-tag">Factura</span><span class="doc-num">N° 0001</span></div>
+              <div class="doc-lines"></div><div class="doc-table"><div></div></div><div class="doc-total">TOTAL A PAGAR</div>
+            </div>
+            <div class="doc d2 tone-green">
+              <div class="doc-head"><span class="doc-tag">Recibo de dinero</span><span class="doc-num">N° 0001</span></div>
+              <div class="doc-lines" style="height:40cqw"></div><div class="doc-total">FIRMA</div>
+            </div>
+            <div class="doc d3 tone-red">
+              <div class="doc-head"><span class="doc-tag">Nota de crédito</span><span class="doc-num">N° 0001</span></div>
+              <div class="doc-lines"></div><div class="doc-table"><div></div></div><div class="doc-total">TOTAL A PAGAR</div>
+            </div>
+            <div class="doc d4 tone-blue">
+              <div class="doc-head"><span class="doc-tag">Nota de remisión</span><span class="doc-num">N° 0001</span></div>
+              <div class="doc-lines"></div><div class="doc-table"><div></div></div><div class="doc-total">RECIBÍ CONFORME</div>
+            </div>
+            <div class="seal">Con tu<br>logo y<br>datos</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="cmyk-bar"></div>
+
+  <!-- ===== CINTA ===== -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+      <span>Facturas</span><span>Recibos de dinero</span><span>Notas de crédito</span><span>Notas de remisión</span>
+      <span>Órdenes de trabajo</span><span>Tarjetas personales</span><span>Recetarios médicos</span><span>Volantes</span><span>Etiquetas</span>
+      <span>Facturas</span><span>Recibos de dinero</span><span>Notas de crédito</span><span>Notas de remisión</span>
+      <span>Órdenes de trabajo</span><span>Tarjetas personales</span><span>Recetarios médicos</span><span>Volantes</span><span>Etiquetas</span>
+    </div>
+  </div>
+
+  <!-- ===== TALONARIOS ===== -->
+  <section class="py-5" id="talonarios">
+    <div class="container py-4 py-lg-5">
+      <div class="row align-items-end mb-5 g-3 reveal">
+        <div class="col-lg-7">
+          <p class="kicker mb-2">Realizamos todo tipo de</p>
+          <h2 class="section-title mb-0">Talonarios <span class="serif text-gold" style="font-size:.75em">para tu negocio</span></h2>
+        </div>
+        <div class="col-lg-5">
+          <p class="text-secondary mb-0">Con tu logo, tus datos y numeración. Contanos qué necesitás y te pasamos el presupuesto por WhatsApp.</p>
+        </div>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-sm-6 col-lg-4 reveal">
+          <article class="ticket">
+            <div class="ticket-art"><div class="doc tone-navy">
+              <div class="doc-head"><span class="doc-tag">Factura</span><span class="doc-num">N° 0001</span></div>
+              <div class="doc-lines"></div><div class="doc-table"><div></div></div>
+            </div></div>
+            <div class="ticket-body">
+              <h3>Factura</h3>
+              <p>Talonarios de factura con los datos de tu empresa, listos para usar.</p>
+              <a class="link-cotizar wa-link" data-msg="Hola VikGrafic, quiero cotizar talonarios de FACTURA." href="#" target="_blank" rel="noopener"><i class="bi bi-whatsapp me-1"></i> Cotizar <i class="bi bi-arrow-right"></i></a>
+            </div>
+          </article>
+        </div>
+        <div class="col-sm-6 col-lg-4 reveal">
+          <article class="ticket">
+            <div class="ticket-art"><div class="doc tone-green">
+              <div class="doc-head"><span class="doc-tag">Recibo de dinero</span><span class="doc-num">N° 0001</span></div>
+              <div class="doc-lines" style="height:57cqw"></div>
+            </div></div>
+            <div class="ticket-body">
+              <h3>Recibo de dinero</h3>
+              <p>Para dejar constancia de cada cobro de forma prolija y ordenada.</p>
+              <a class="link-cotizar wa-link" data-msg="Hola VikGrafic, quiero cotizar talonarios de RECIBO DE DINERO." href="#" target="_blank" rel="noopener"><i class="bi bi-whatsapp me-1"></i> Cotizar <i class="bi bi-arrow-right"></i></a>
+            </div>
+          </article>
+        </div>
+        <div class="col-sm-6 col-lg-4 reveal">
+          <article class="ticket">
+            <div class="ticket-art"><div class="doc tone-red">
+              <div class="doc-head"><span class="doc-tag">Nota de crédito</span><span class="doc-num">N° 0001</span></div>
+              <div class="doc-lines"></div><div class="doc-table"><div></div></div>
+            </div></div>
+            <div class="ticket-body">
+              <h3>Nota de crédito</h3>
+              <p>Talonarios de notas de crédito con el formato que necesita tu negocio.</p>
+              <a class="link-cotizar wa-link" data-msg="Hola VikGrafic, quiero cotizar talonarios de NOTA DE CRÉDITO." href="#" target="_blank" rel="noopener"><i class="bi bi-whatsapp me-1"></i> Cotizar <i class="bi bi-arrow-right"></i></a>
+            </div>
+          </article>
+        </div>
+        <div class="col-sm-6 col-lg-4 reveal">
+          <article class="ticket">
+            <div class="ticket-art"><div class="doc tone-blue">
+              <div class="doc-head"><span class="doc-tag">Nota de remisión</span><span class="doc-num">N° 0001</span></div>
+              <div class="doc-lines"></div><div class="doc-table"><div></div></div>
+            </div></div>
+            <div class="ticket-body">
+              <h3>Nota de remisión</h3>
+              <p>Para acompañar tus envíos y entregas de mercadería.</p>
+              <a class="link-cotizar wa-link" data-msg="Hola VikGrafic, quiero cotizar talonarios de NOTA DE REMISIÓN." href="#" target="_blank" rel="noopener"><i class="bi bi-whatsapp me-1"></i> Cotizar <i class="bi bi-arrow-right"></i></a>
+            </div>
+          </article>
+        </div>
+        <div class="col-sm-6 col-lg-4 reveal">
+          <article class="ticket">
+            <div class="ticket-art"><div class="doc tone-orange">
+              <div class="doc-head"><span class="doc-tag">Orden de trabajo</span><span class="doc-num">N° 0001</span></div>
+              <div class="doc-lines"></div><div class="doc-table"><div></div></div>
+            </div></div>
+            <div class="ticket-body">
+              <h3>Órdenes de trabajo</h3>
+              <p>Ideales para talleres, técnicos y servicios: registrá cada trabajo.</p>
+              <a class="link-cotizar wa-link" data-msg="Hola VikGrafic, quiero cotizar talonarios de ÓRDENES DE TRABAJO." href="#" target="_blank" rel="noopener"><i class="bi bi-whatsapp me-1"></i> Cotizar <i class="bi bi-arrow-right"></i></a>
+            </div>
+          </article>
+        </div>
+        <div class="col-sm-6 col-lg-4 reveal">
+          <article class="ticket">
+            <div class="ticket-art"><div class="doc tone-gold">
+              <div class="doc-head"><span class="doc-tag">Tu logo aquí</span><span class="doc-num">N° 0001</span></div>
+              <div class="doc-lines"></div><div class="doc-table"><div></div></div>
+            </div></div>
+            <div class="ticket-body">
+              <h3>Talonarios personalizados</h3>
+              <p>¿Necesitás otro formato? Lo armamos a tu medida, con tu diseño.</p>
+              <a class="link-cotizar wa-link" data-msg="Hola VikGrafic, quiero cotizar un TALONARIO PERSONALIZADO." href="#" target="_blank" rel="noopener"><i class="bi bi-whatsapp me-1"></i> Cotizar <i class="bi bi-arrow-right"></i></a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== OTROS PRODUCTOS ===== -->
+  <section class="productos py-5" id="productos">
+    <div class="container py-4 py-lg-5">
+      <div class="text-center mb-5 reveal">
+        <p class="kicker mb-2 text-gold">Y también ofrecemos</p>
+        <h2 class="section-title">Impresos que <span class="serif text-gold-grad">hacen crecer</span> tu marca</h2>
+      </div>
+      <div class="row g-4">
+        <div class="col-sm-6 col-lg-3 reveal">
+          <div class="crop"><div class="product">
+            <div class="product-icon" style="--accent: var(--c)"><i class="bi bi-person-vcard"></i></div>
+            <h3>Tarjetas personales</h3>
+            <p>Tu primera impresión, en papel de calidad y con un diseño que te representa.</p>
+            <a class="link-cotizar wa-link" data-msg="Hola VikGrafic, quiero cotizar TARJETAS PERSONALES." href="#" target="_blank" rel="noopener">Cotizar <i class="bi bi-arrow-right"></i></a>
+          </div></div>
+        </div>
+        <div class="col-sm-6 col-lg-3 reveal">
+          <div class="crop"><div class="product">
+            <div class="product-icon" style="--accent: var(--m)"><i class="bi bi-clipboard2-pulse"></i></div>
+            <h3>Recetarios médicos</h3>
+            <p>Con nombre, especialidad y registro del profesional. Para médicos y clínicas.</p>
+            <a class="link-cotizar wa-link" data-msg="Hola VikGrafic, quiero cotizar RECETARIOS MÉDICOS." href="#" target="_blank" rel="noopener">Cotizar <i class="bi bi-arrow-right"></i></a>
+          </div></div>
+        </div>
+        <div class="col-sm-6 col-lg-3 reveal">
+          <div class="crop"><div class="product">
+            <div class="product-icon" style="--accent: var(--y)"><i class="bi bi-megaphone"></i></div>
+            <h3>Volantes publicitarios</h3>
+            <p>Promociones, inauguraciones y ofertas: llegá a más clientes en tu zona.</p>
+            <a class="link-cotizar wa-link" data-msg="Hola VikGrafic, quiero cotizar VOLANTES PUBLICITARIOS." href="#" target="_blank" rel="noopener">Cotizar <i class="bi bi-arrow-right"></i></a>
+          </div></div>
+        </div>
+        <div class="col-sm-6 col-lg-3 reveal">
+          <div class="crop"><div class="product">
+            <div class="product-icon" style="--accent: var(--vg-gold-light)"><i class="bi bi-tags"></i></div>
+            <h3>Etiquetas para productos</h3>
+            <p>Para frascos, envases y productos artesanales. Que tu producto se destaque.</p>
+            <a class="link-cotizar wa-link" data-msg="Hola VikGrafic, quiero cotizar ETIQUETAS PARA PRODUCTOS." href="#" target="_blank" rel="noopener">Cotizar <i class="bi bi-arrow-right"></i></a>
+          </div></div>
+        </div>
+      </div>
+      <p class="text-center mt-5 mb-0 reveal" style="color:rgba(255,255,255,.65)">
+        ¿Buscás otro impreso? <a class="text-gold fw-semibold wa-link" data-msg="Hola VikGrafic, quiero consultar por un trabajo de impresión." href="#" target="_blank" rel="noopener">Consultanos sin compromiso</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== POR QUÉ ELEGIRNOS + PUBLICIDAD ===== -->
+  <section class="py-5" id="nosotros">
+    <div class="container py-4 py-lg-5">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-6 order-lg-2 reveal">
+          <p class="kicker mb-2">¿Por qué VikGrafic?</p>
+          <h2 class="section-title mb-4">Imprimimos tus ideas, <span class="serif text-gold">potenciamos tu marca</span></h2>
+          <div class="feature-row">
+            <div class="feature-icon"><i class="bi bi-award"></i></div>
+            <div><h3>Impresiones de alta calidad</h3><p class="text-secondary mb-0">Colores fieles y terminaciones prolijas en cada trabajo.</p></div>
+          </div>
+          <div class="feature-row">
+            <div class="feature-icon"><i class="bi bi-stopwatch"></i></div>
+            <div><h3>Entrega rápida</h3><p class="text-secondary mb-0">Sabemos que tu negocio no puede esperar.</p></div>
+          </div>
+          <div class="feature-row">
+            <div class="feature-icon"><i class="bi bi-people"></i></div>
+            <div><h3>Atención personalizada</h3><p class="text-secondary mb-0">Te asesoramos para que tu impreso quede como lo imaginás.</p></div>
+          </div>
+          <div class="feature-row">
+            <div class="feature-icon"><i class="bi bi-truck"></i></div>
+            <div><h3>Realizamos envíos</h3><p class="text-secondary mb-0">Estamos en Capiatá y te lo hacemos llegar.</p></div>
+          </div>
+        </div>
+        <div class="col-lg-6 order-lg-1 reveal">
+          <div class="flyer-frame">
+            <a href="img/publicidad-vikgrafic.webp" target="_blank" rel="noopener">
+              <img src="img/publicidad-vikgrafic.webp" class="img-fluid flyer-img" width="583" height="872"
+                   alt="Publicidad de VikGrafic, soluciones de impresión" loading="lazy">
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CÓMO PEDIR ===== -->
+  <section class="pb-5" id="como-pedir">
+    <div class="container pb-4 pb-lg-5">
+      <div class="text-center mb-5 reveal">
+        <p class="kicker mb-2">Fácil y rápido</p>
+        <h2 class="section-title">¿Cómo hacer tu pedido?</h2>
+      </div>
+      <div class="row g-4 steps position-relative">
+        <div class="steps-line d-none d-lg-block"></div>
+        <div class="col-6 col-lg-3 step reveal">
+          <div class="step-dot" style="--accent: var(--c)"><i class="bi bi-whatsapp"></i></div>
+          <h3>Escribinos</h3>
+          <p class="mb-0">Contanos qué necesitás imprimir y cuántas unidades.</p>
+        </div>
+        <div class="col-6 col-lg-3 step reveal">
+          <div class="step-dot" style="--accent: var(--m)"><i class="bi bi-pencil-square"></i></div>
+          <h3>Confirmamos</h3>
+          <p class="mb-0">Acordamos los detalles, el diseño y el precio.</p>
+        </div>
+        <div class="col-6 col-lg-3 step reveal">
+          <div class="step-dot" style="--accent: #e0b800"><i class="bi bi-printer"></i></div>
+          <h3>Imprimimos</h3>
+          <p class="mb-0">Producimos tu trabajo con la mejor calidad.</p>
+        </div>
+        <div class="col-6 col-lg-3 step reveal">
+          <div class="step-dot" style="--accent: var(--vg-navy)"><i class="bi bi-box-seam"></i></div>
+          <h3>Recibís</h3>
+          <p class="mb-0">Retirás en Capiatá o te lo enviamos.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACTO ===== -->
+  <section class="contacto py-5" id="contacto">
+    <div class="cmyk-bar position-absolute top-0 start-0 end-0"></div>
+    <div class="container py-4 py-lg-5">
+      <div class="row g-4 g-lg-5 align-items-center">
+        <div class="col-lg-6 reveal">
+          <p class="kicker mb-2 text-gold">Contacto</p>
+          <h2 class="section-title text-white mb-3">¿Listo para imprimir?</h2>
+          <p class="serif fs-3 text-gold-grad mb-4">¡La mejor impresión para tus mejores ideas!</p>
+          <div>
+            <div class="info-item"><i class="bi bi-geo-alt-fill"></i><div><small>Zona</small><span class="v">Capiatá</span></div></div>
+            <div class="info-item"><i class="bi bi-truck"></i><div><small>Entregas</small><span class="v">Realizamos envíos</span></div></div>
+            <div class="info-item"><i class="bi bi-telephone-fill"></i><div><small>Teléfonos</small>
+              <a href="tel:+595976971131">0976 971 131</a> <span class="text-white-50 mx-1">·</span> <a href="tel:+595976971127">0976 971 127</a></div></div>
+            <div class="info-item"><i class="bi bi-instagram"></i><div><small>Instagram</small>
+              <a href="https://www.instagram.com/imprenta_vikgrafic/" target="_blank" rel="noopener">@imprenta_vikgrafic</a></div></div>
+          </div>
+        </div>
+        <div class="col-lg-6 reveal">
+          <div class="contact-card p-4 p-md-5 text-center">
+            <svg width="72" height="72" aria-hidden="true"><use href="#logo-vg"/></svg>
+            <p class="text-white-50 text-uppercase small fw-semibold mt-3 mb-2" style="letter-spacing:2px">Escribinos o llamanos</p>
+            <a href="tel:+595976971131" class="phone-big text-white d-inline-block mb-4"><i class="bi bi-telephone-fill text-gold me-2"></i>0976 971 131</a>
+            <div class="d-grid gap-3">
+              <a class="btn btn-whatsapp btn-lg rounded-pill py-3 wa-link" href="#" target="_blank" rel="noopener">
+                <i class="bi bi-whatsapp me-2"></i>Escribir por WhatsApp
+              </a>
+              <a class="btn btn-outline-gold btn-lg rounded-pill py-3" href="https://www.instagram.com/imprenta_vikgrafic/" target="_blank" rel="noopener">
+                <i class="bi bi-instagram me-2"></i>Ver nuestros trabajos
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Guardar como app (PWA) -->
+      <div class="install-box install-only p-4 mt-5 mx-auto col-lg-9 d-flex flex-column flex-md-row align-items-center gap-3 text-center text-md-start reveal">
+        <img src="img/icons/icon-192.png" class="app-icon-preview" alt="Ícono de la app VikGrafic">
+        <div class="flex-grow-1">
+          <p class="fw-bold mb-1">¡Tené nuestro contacto siempre a mano!</p>
+          <p class="small text-white-50 mb-0">Se agrega como una app más en tu celular, sin ocupar espacio.</p>
+        </div>
+        <button type="button" class="btn btn-gold btn-install rounded-pill px-4 py-3 js-install">
+          <i class="bi bi-download me-2"></i>Guardanos en tu celular
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="py-4">
+    <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-2 text-center">
+      <span class="d-flex align-items-center gap-2">
+        <svg width="28" height="28" aria-hidden="true"><use href="#logo-vg"/></svg>
+        <strong class="text-white">VikGrafic</strong> · Soluciones de Impresión
+      </span>
+      <span>&copy; <span id="year"></span> · Todos los derechos reservados</span>
+    </div>
+    <div class="text-center mt-3">
+      <a href="nestor.html" class="hecho-por">Hecho por Nestor</a>
+    </div>
+  </footer>
+
+  <!-- Instrucciones para instalar cuando el navegador no muestra el aviso automático (iPhone, etc.) -->
+  <div class="modal fade" id="installModal" tabindex="-1" aria-labelledby="installModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content rounded-4 border-0 overflow-hidden">
+        <div class="modal-header text-white border-0" style="background:var(--vg-navy)">
+          <h2 class="modal-title h5 fw-bold" id="installModalLabel">
+            <i class="bi bi-phone text-gold me-2"></i>Guardanos en tu celular
+          </h2>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body p-4">
+          <div id="installIOS" class="d-none">
+            <p class="fw-semibold">En iPhone / iPad (Safari):</p>
+            <ol class="mb-0">
+              <li class="mb-2">Tocá el botón <strong>Compartir</strong> <i class="bi bi-box-arrow-up"></i> de abajo.</li>
+              <li class="mb-2">Elegí <strong>"Agregar a inicio"</strong> <i class="bi bi-plus-square"></i>.</li>
+              <li>Tocá <strong>"Agregar"</strong>. ¡Listo, ya tenés el ícono!</li>
+            </ol>
+          </div>
+          <div id="installOther">
+            <p class="fw-semibold">En Android (Chrome):</p>
+            <ol class="mb-0">
+              <li class="mb-2">Tocá el menú <strong><i class="bi bi-three-dots-vertical"></i></strong> arriba a la derecha.</li>
+              <li class="mb-2">Elegí <strong>"Instalar app"</strong> o <strong>"Agregar a la pantalla principal"</strong>.</li>
+              <li>Confirmá. ¡Listo, ya tenés el ícono!</li>
+            </ol>
+          </div>
+        </div>
+        <div class="modal-footer border-0 pt-0">
+          <button type="button" class="btn btn-gold rounded-pill px-4" data-bs-dismiss="modal">Entendido</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Botón flotante de WhatsApp -->
+  <a class="wa-float wa-link" href="#" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
+    <i class="bi bi-whatsapp"></i>
+  </a>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.9/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-WyOxWvTyr1QaMPfiPJSv76iReVthorl5uWlFtZPyK0IEB0hGzo9y5Bp9mYanr8Bu" crossorigin="anonymous"></script>
+  <script>
+    // WhatsApp: número en formato internacional (Paraguay +595, sin el 0 inicial)
+    const WHATSAPP = "595976971131";
+    const MENSAJE = "Hola VikGrafic, vi su página y quiero pedir un presupuesto.";
+    // Cada botón puede tener su propio mensaje con data-msg (ej.: el producto que se quiere cotizar)
+    document.querySelectorAll(".wa-link").forEach(a => {
+      const texto = a.dataset.msg || MENSAJE;
+      a.href = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(texto)}`;
+    });
+
+    // Año del footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Navbar sólido al hacer scroll
+    const nav = document.getElementById("mainNav");
+    const onScroll = () => nav.classList.toggle("scrolled", window.scrollY > 40);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+
+    // Cerrar el menú móvil al tocar un enlace
+    const menu = document.getElementById("navMenu");
+    menu.querySelectorAll("a").forEach(a => a.addEventListener("click", () => {
+      const c = bootstrap.Collapse.getInstance(menu);
+      if (c) c.hide();
+    }));
+
+    // Animación de aparición al hacer scroll
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("visible"); io.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+
+    // ===== PWA: instalar en el celular =====
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => navigator.serviceWorker.register("sw.js").catch(() => {}));
+    }
+
+    const yaInstalada = window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone === true;
+    if (yaInstalada) document.body.classList.add("is-installed");
+
+    let avisoInstalar = null; // Chrome/Android/Edge: guardamos el aviso para mostrarlo al tocar el botón
+    window.addEventListener("beforeinstallprompt", e => { e.preventDefault(); avisoInstalar = e; });
+    window.addEventListener("appinstalled", () => { avisoInstalar = null; document.body.classList.add("is-installed"); });
+
+    const esIOS = /iphone|ipad|ipod/i.test(navigator.userAgent) ||
+                  (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+
+    document.querySelectorAll(".js-install").forEach(btn => btn.addEventListener("click", async () => {
+      if (avisoInstalar) {
+        avisoInstalar.prompt();
+        await avisoInstalar.userChoice;
+        avisoInstalar = null;
+        return;
+      }
+      // Sin aviso automático (iPhone, Firefox, etc.): mostramos las instrucciones
+      document.getElementById("installIOS").classList.toggle("d-none", !esIOS);
+      document.getElementById("installOther").classList.toggle("d-none", esIOS);
+      bootstrap.Modal.getOrCreateInstance(document.getElementById("installModal")).show();
+    }));
+  </script>
+</body>
+</html>
