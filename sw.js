@@ -1,6 +1,6 @@
 // Service worker: permite instalar la app y abrirla aunque no haya internet.
 // Cuando cambies algo de la página, subí el número de versión para renovar la caché.
-const CACHE = "vikgrafic-v2";
+const CACHE = "vikgrafic-v3";
 
 const ARCHIVOS = [
   "./",
@@ -30,6 +30,8 @@ self.addEventListener("activate", event => {
 self.addEventListener("fetch", event => {
   const req = event.request;
   if (req.method !== "GET") return;
+  // Estadísticas de Google: siempre por internet, nunca desde la caché.
+  if (/googletagmanager\.com|google-analytics\.com|analytics\.google\.com/.test(new URL(req.url).hostname)) return;
 
   // Páginas: primero internet (para ver siempre lo último), si no hay conexión, la copia guardada.
   if (req.mode === "navigate") {

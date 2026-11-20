@@ -1,6 +1,13 @@
 <!doctype html>
 <html lang="es">
 <head>
+  <!-- Google tag (Analytics) -->
+  <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-5JTZ2GXP"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  </script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>VikGrafic | Soluciones de Impresión en Capiatá</title>
@@ -980,6 +987,14 @@
     document.querySelectorAll(".wa-link").forEach(a => {
       const texto = a.dataset.msg || MENSAJE;
       a.href = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(texto)}`;
+    });
+
+    // Estadísticas: clics en WhatsApp, teléfonos y compartir puntaje
+    document.addEventListener("click", e => {
+      const a = e.target.closest("a"); if (!a) return;
+      if (a.id === "gShare") gtag("event", "share", { method: "whatsapp", content_type: "juego" });
+      else if (a.classList.contains("wa-link")) gtag("event", "generate_lead", { metodo: "whatsapp", mensaje: a.dataset.msg || MENSAJE });
+      else if (a.href.startsWith("tel:")) gtag("event", "contacto_telefono", { telefono: a.getAttribute("href").slice(4) });
     });
 
     // Año del footer

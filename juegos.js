@@ -393,8 +393,11 @@
   }
   function setPauseIcon() { ui.pause.innerHTML = state === "paused" ? '<i class="bi bi-play-fill"></i>' : '<i class="bi bi-pause-fill"></i>'; }
 
+  function track(name, params) { try { if (window.gtag) window.gtag("event", name, params); } catch (e) {} }
+
   function open(key) {
     game = GAMES[key]; if (!game) return;
+    track("juego_abrir", { juego: game.title });
     ui.title.textContent = game.title; ui.extraLabel.textContent = game.extraLabel;
     ui.nextBox.hidden = !game.next;
     ui.ctrlSnake.hidden = game !== Snake; ui.ctrlBlocks.hidden = game !== Blocks;
@@ -416,6 +419,7 @@
   function start() {
     if (state === "playing" || state === "idle") return;
     if (state === "over") { parts = []; floats = []; game.reset(); hud(); }
+    if (state !== "paused") track("juego_iniciar", { juego: game.title });
     state = "playing"; showPanel(); setPauseIcon();
     snd.tone(1, 1, .01, "sine", .0001); // habilita el audio en iPhone
   }
@@ -429,6 +433,7 @@
     state = "over"; snd.over(); buzz([60, 50, 60]); shake = 8;
     const prev = best(), sc = game.score, rec = sc > prev && sc > 0;
     if (rec) store.set("vg-record-" + game.key, sc);
+    track("juego_fin", { juego: game.title, puntos: sc, record: rec ? "si" : "no" });
     ui.final.textContent = sc; ui.record.hidden = !rec; ui.overBest.textContent = Math.max(prev, sc);
     const url = location.href.split("#")[0];
     const msg = `¡Hice ${sc} puntos en ${game.title} de VikGrafic! 🎮 ¿Me superás? ${url}`;
